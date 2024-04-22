@@ -1,5 +1,6 @@
 package pages;
 
+import io.cucumber.java.Scenario;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -59,6 +60,12 @@ public class BasePage {
         List<WebElement> dropdownOptions = dropdown.getOptions();
 
         return dropdownOptions.size();
+    }
+
+    public void screenshot(Scenario scenario) {
+        final byte[] screenshot = ((TakesScreenshot) driver)
+                .getScreenshotAs(OutputType.BYTES);
+        scenario.attach(screenshot,"image/png","test-screenshot");
     }
 
 }
