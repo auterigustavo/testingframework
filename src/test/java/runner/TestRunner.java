@@ -10,7 +10,8 @@ import pages.BasePage;
 @CucumberOptions(
         features = "src/test/resources/features", //indico donde estan los features files
         glue = "steps", //indico donde estan los steps definitions
-        plugin = {"pretty","html:target/cucumber-reports/cucumber.html"})
+        plugin = {"pretty","html:target/cucumber-reports/cucumber.html"},
+        tags = "@2")
 
 public class TestRunner {
 

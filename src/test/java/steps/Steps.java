@@ -1,11 +1,11 @@
 package steps;
 
 import io.cucumber.java.en.*;
-import pages.MainPage;
+import pages.FreeRangeTestersPage;
 
 public class Steps {
 
-    MainPage website = new MainPage();
+    FreeRangeTestersPage website = new FreeRangeTestersPage();
 
     @Given("I navigate to {word}")
     public void iNavigateTo(String url) {
