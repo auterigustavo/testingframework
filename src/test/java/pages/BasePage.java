@@ -4,6 +4,7 @@ import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -11,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
+
     protected static WebDriver driver;
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
@@ -21,6 +23,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         BasePage.driver = driver;
+        driver.manage().window().maximize();
     }
 
     public static void navigateTo(String url) {
@@ -59,4 +62,13 @@ public class BasePage {
         scenario.attach(screenshot,"image/png","test-screenshot");
     }
 
+    public void scrollTo(String locator){
+        WebElement element = Find(locator);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public void uploadArchive(String locator, String path){
+        WebElement input = driver.findElement(By.xpath(locator));
+        input.sendKeys(path);
+    }
 }
